@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ Dream | Мои проекты</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-blue: #08f7fe;
+            --neon-pink: #fe53bb;
+            --neon-green: #09fbd3;
+            --neon-purple: #7c4dff;
+            --dark-bg: #0f0e17;
+            --section-bg: rgba(15, 15, 25, 0.9);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', sans-serif;
+            min-height: 100vh;
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+        }
+
+        .particles-js-canvas-el {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: rgba(124, 77, 255, 0.2);
+            border: 1px solid var(--neon-purple);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            z-index: 100;
+            backdrop-filter: blur(5px);
+        }
+
+        .back-btn:hover {
+            background: var(--neon-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px var(--neon-purple);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInDown 1s 0.3s forwards;
+        }
+
+        @keyframes fadeInDown {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            font-size: 3rem;
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .subtitle {
+            color: #b0bec5;
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            gap: 40px;
+        }
+
+        .project-card {
+            background: var(--section-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: cardAppear 0.8s forwards;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 77, 255, 0.2);
+            transition: all 0.5s ease;
+        }
+
+        .project-card:nth-child(1) { animation-delay: 0.6s; }
+        .project-card:nth-child(2) { animation-delay: 0.9s; }
+        .project-card:nth-child(3) { animation-delay: 1.2s; }
+
+        @keyframes cardAppear {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) !important;
+            box-shadow: 0 15px 40px rgba(124, 77, 255, 0.4);
+        }
+
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8));
+        }
+
+        .project-content {
+            padding: 30px;
+        }
+
+        .project-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-green);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .project-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--neon-green);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-title::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .project-description {
+            color: #b0bec5;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+
+        .project-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--neon-purple), #b388ff);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(124, 77, 255, 0.3);
+        }
+
+        .project-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(124, 77, 255, 0.5);
+        }
+
+        .dragon-icon {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .dragon-icon:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .dragon-icon:nth-child(2) {
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            padding: 30px 0;
+            color: #616161;
+            font-size: 0.9rem;
+        }
+
+        .contact-card {
+            background: var(--section-bg);
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 77, 255, 0.2);
+            opacity: 0;
+            transform: translateY(50px);
+            animation: cardAppear 0.8s 1.5s forwards;
+        }
+
+        .contact-title {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-pink);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .contact-text {
+            color: #b0bec5;
+            line-height: 1.7;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .contact-btn {
+            display: block;
+            width: max-content;
+            margin: 0 auto;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--neon-pink), #ff6ec4);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 600;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 15px rgba(254, 83, 187, 0.3);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(254, 83, 187, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+    
+    <a href="index.html" class="back-btn">← Назад</a>
+
+    <div class="dragon-icon">
+        <svg viewBox="0 0 24 24" fill="var(--neon-purple)">
+            <path d="M19,7L18,9V7H17V9H15V5H14V10H13V5H12V10H11V5H10V9H8V7H7V9L6,7H5V20H6L7,18V20H8V18H10V20H11V18H13V20H14V18H15V20H17V18L18,20H19V7M7,11H8V16H7V11M10,11H11V16H10V11M13,11H14V16H13V11M17,11H16V16H17V11Z"/>
+        </svg>
+    </div>
+    <div class="dragon-icon">
+        <svg viewBox="0 0 24 24" fill="var(--neon-blue)">
+            <path d="M19,7L18,9V7H17V9H15V5H14V10H13V5H12V10H11V5H10V9H8V7H7V9L6,7H5V20H6L7,18V20H8V18H10V20H11V18H13V20H14V18H15V20H17V18L18,20H19V7M7,11H8V16H7V11M10,11H11V16H10V11M13,11H14V16H13V11M17,11H16V16H17V11Z"/>
+        </svg>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Мои проекты</h1>
+            <div class="subtitle">Здесь собраны мои лучшие работы, в которые я вложил душу и профессиональные навыки</div>
+        </div>
+
+        <div class="projects-grid">
+            <!-- Проект 1 -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('https://i.imgur.com/JZkYbDn.png');"></div>
+                <div class="project-content">
+                    <h3 class="project-title">Dragon Demonic</h3>
+                    <p class="project-description">
+                        Игровой Telegram-бот с уникальной атмосферой и захватывающим геймплеем. 
+                        Это целая вселенная с собственным лором, квестами и системой развития. 
+                        Присоединяйтесь к сообществу и станьте частью этой истории!
+                    </p>
+                    <a href="https://dream23041.github.io/DragonDemonic/" target="_blank" class="project-btn">Посетить сайт</a>
+                </div>
+            </div>
+
+            <!-- Проект 2 -->
+            <div class="project-card">
+                <div class="project-image" style="background-image: url('https://i.imgur.com/8QJQY7a.png');"></div>
+                <div class="project-content">
+                    <h3 class="project-title">DRModer Bot</h3>
+                    <p class="project-description">
+                        Мощный Telegram-бот для модерации групп с интеллектуальной системой анализа нарушений. 
+                        Автоматизирует рутинные задачи модераторов, предоставляет детальную статистику 
+                        и делает управление сообществом простым и эффективным.
+                    </p>
+                    <a href="https://t.me/drmoder_bot" target="_blank" class="project-btn">Перейти к боту</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Блок заказа -->
+        <div class="contact-card">
+            <h3 class="contact-title">Нужен крутой проект?</h3>
+            <p class="contact-text">
+                Если вы хотите заказать современный сайт, Telegram-бота или другое digital-решение - 
+                я с радостью помогу! Берусь за интересные проекты и предлагаю оптимальные цены 
+                за качественную работу. Давайте создадим что-то уникальное вместе!
+            </p>
+            <a href="https://t.me/dream23041" target="_blank" class="contact-btn">Обсудить проект</a>
+        </div>
+
+        <footer>
+            © 2025 Dream Digital Universe | Все права защищены
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Инициализация частиц
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": ["#08f7fe", "#fe53bb", "#09fbd3", "#7c4dff"]
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 1,
+                        "opacity_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#08f7fe",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
+                }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+    </script>
+</body>
+</html>
