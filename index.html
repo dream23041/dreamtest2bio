@@ -149,7 +149,6 @@
         .btn:nth-child(1) { animation: btnAppear 0.6s 1.0s forwards; }
         .btn:nth-child(2) { animation: btnAppear 0.6s 1.2s forwards; }
         .btn:nth-child(3) { animation: btnAppear 0.6s 1.4s forwards; }
-        .btn:nth-child(4) { animation: btnAppear 0.6s 1.6s forwards; }
 
         @keyframes btnAppear {
             to { opacity: 1; transform: translateY(0); }
@@ -186,20 +185,6 @@
         .btn-projects {
             background: linear-gradient(135deg, var(--neon-purple), #b388ff);
             grid-column: span 2;
-        }
-
-        .btn-music {
-            background: linear-gradient(135deg, #9c27b0, #e91e63);
-        }
-
-        .btn-music.playing::after {
-            content: " ♫";
-            animation: musicNote 1s infinite;
-        }
-
-        @keyframes musicNote {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
         }
 
         .projects-section {
@@ -260,7 +245,6 @@
         .skill-item:nth-child(2) { animation-delay: 2.1s; }
         .skill-item:nth-child(3) { animation-delay: 2.2s; }
         .skill-item:nth-child(4) { animation-delay: 2.3s; }
-        .skill-item:nth-child(5) { animation-delay: 2.4s; }
 
         @keyframes skillAppear {
             to { opacity: 1; transform: scale(1); }
@@ -343,14 +327,12 @@
             <a href="https://t.me/dream23041" class="btn btn-telegram">Telegram</a>
             <a href="https://github.com/dream23041" class="btn btn-github">GitHub</a>
             <a href="#projects" class="btn btn-projects">Мои проекты</a>
-            <button id="musicBtn" class="btn btn-music">Расслабон</button>
         </div>
         
         <div class="projects-section" id="projects">
             <h3 class="section-title">НАВЫКИ</h3>
             <div class="skills-grid">
                 <div class="skill-item">HTML/CSS</div>
-                <div class="skill-item">JavaScript</div>
                 <div class="skill-item">Python</div>
                 <div class="skill-item">Системный админ</div>
                 <div class="skill-item">Дизайн</div>
@@ -362,132 +344,91 @@
         </footer>
     </div>
 
-    <!-- Скрытый аудиоплеер -->
-    <audio id="bgMusic" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-        Ваш браузер не поддерживает аудио.
-    </audio>
-
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
         // Инициализация частиц
-        document.addEventListener('DOMContentLoaded', function() {
-            particlesJS('particles-js', {
-                "particles": {
-                    "number": {
-                        "value": 80,
-                        "density": {
-                            "enable": true,
-                            "value_area": 800
-                        }
-                    },
-                    "color": {
-                        "value": ["#08f7fe", "#fe53bb", "#09fbd3", "#7c4dff"]
-                    },
-                    "shape": {
-                        "type": "circle",
-                        "stroke": {
-                            "width": 0,
-                            "color": "#000000"
-                        }
-                    },
-                    "opacity": {
-                        "value": 0.5,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 1,
-                            "opacity_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "size": {
-                        "value": 3,
-                        "random": true,
-                        "anim": {
-                            "enable": true,
-                            "speed": 2,
-                            "size_min": 0.1,
-                            "sync": false
-                        }
-                    },
-                    "line_linked": {
+        particlesJS('particles-js', {
+            "particles": {
+                "number": {
+                    "value": 80,
+                    "density": {
                         "enable": true,
-                        "distance": 150,
-                        "color": "#08f7fe",
-                        "opacity": 0.2,
-                        "width": 1
-                    },
-                    "move": {
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": ["#08f7fe", "#fe53bb", "#09fbd3", "#7c4dff"]
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    }
+                },
+                "opacity": {
+                    "value": 0.5,
+                    "random": true,
+                    "anim": {
                         "enable": true,
                         "speed": 1,
-                        "direction": "none",
-                        "random": true,
-                        "straight": false,
-                        "out_mode": "out",
-                        "bounce": false
+                        "opacity_min": 0.1,
+                        "sync": false
                     }
                 },
-                "interactivity": {
-                    "detect_on": "canvas",
-                    "events": {
-                        "onhover": {
-                            "enable": true,
-                            "mode": "grab"
-                        },
-                        "onclick": {
-                            "enable": true,
-                            "mode": "push"
-                        },
-                        "resize": true
-                    },
-                    "modes": {
-                        "grab": {
-                            "distance": 140,
-                            "line_linked": {
-                                "opacity": 1
-                            }
-                        },
-                        "push": {
-                            "particles_nb": 4
-                        }
+                "size": {
+                    "value": 3,
+                    "random": true,
+                    "anim": {
+                        "enable": true,
+                        "speed": 2,
+                        "size_min": 0.1,
+                        "sync": false
                     }
                 },
-                "retina_detect": true
-            });
-
-            const musicBtn = document.getElementById('musicBtn');
-            const bgMusic = document.getElementById('bgMusic');
-            let isPlaying = false;
-
-            bgMusic.volume = 0.3;
-
-            musicBtn.addEventListener('click', function() {
-                if (isPlaying) {
-                    bgMusic.pause();
-                    musicBtn.classList.remove('playing');
-                    musicBtn.textContent = 'Расслабон';
-                } else {
-                    bgMusic.play()
-                        .then(() => {
-                            musicBtn.classList.add('playing');
-                            musicBtn.textContent = 'Стоп';
-                            isPlaying = true;
-                        })
-                        .catch(error => {
-                            console.error("Автовоспроизведение заблокировано:", error);
-                            musicBtn.textContent = 'Нажмите снова';
-                        });
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#08f7fe",
+                    "opacity": 0.2,
+                    "width": 1
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 1,
+                    "direction": "none",
+                    "random": true,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false
                 }
-                isPlaying = !isPlaying;
-            });
-
-            // Плавное появление при загрузке
-            document.body.style.opacity = 0;
-            setTimeout(() => {
-                document.body.style.transition = 'opacity 1s ease';
-                document.body.style.opacity = 1;
-            }, 100);
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "grab"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 140,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    }
+                }
+            },
+            "retina_detect": true
         });
     </script>
 </body>
