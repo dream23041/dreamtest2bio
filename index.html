@@ -3,102 +3,158 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dream | BIO</title>
+    <title>✨ Dream | Digital Creator</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-        
+        :root {
+            --neon-blue: #08f7fe;
+            --neon-pink: #fe53bb;
+            --neon-green: #09fbd3;
+            --neon-purple: #7c4dff;
+            --dark-bg: #0f0e17;
+            --section-bg: rgba(15, 15, 25, 0.9);
+        }
+
         body {
             margin: 0;
             padding: 0;
             font-family: 'Montserrat', sans-serif;
-            background: url('https://steamuserimages-a.akamaihd.net/ugc/866244165281230504/F1B88FD2E6D2A86F5FE2B028654C7ECDCBD4DE6D/?imw=512&amp;imh=409&amp;ima=fit&amp;impolicy=Letterbox&amp;imcolor=%23000000&amp;letterbox=true') no-repeat center center fixed;
-            background-size: cover;
-            height: 100vh;
+            min-height: 100vh;
             color: white;
             display: flex;
             justify-content: center;
             align-items: center;
             overflow: hidden;
             position: relative;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
         }
-        
-        body::before {
-            content: '';
-            position: absolute;
+
+        .particles-js-canvas-el {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
             z-index: -1;
+            opacity: 0.7;
         }
-        
-        .avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            border: 2.5px solid #00bd06;
-            object-fit: cover;
-            margin: 0 auto 20px;
-            display: block;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-        }
-        
+
         .bio-container {
             width: 90%;
-            max-width: 500px;
-            background: rgba(15, 15, 25, 0.8);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            max-width: 600px;
+            background: var(--section-bg);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(124, 77, 255, 0.3);
             text-align: center;
             position: relative;
             overflow: hidden;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(124, 77, 255, 0.2);
+            transform: scale(0.95);
+            animation: scaleIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
         }
-        
+
+        @keyframes scaleIn {
+            to { transform: scale(1); }
+        }
+
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--neon-purple);
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: translateY(-20px);
+            opacity: 0;
+            animation: avatarDrop 1s 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        @keyframes avatarDrop {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .avatar-border {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            border: 2px dashed var(--neon-blue);
+            animation: rotateBorder 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes rotateBorder {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         h1 {
-            margin: 10px 0 0;
-            font-size: 28px;
-            color: #02e8df;
-            text-shadow: 0 0 10px rgba(179, 136, 255, 0.5);
-            animation: glow 2s ease-in-out infinite alternate;
+            margin: 15px 0 5px;
+            font-size: 2.5rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+            letter-spacing: 2px;
+            opacity: 0;
+            animation: fadeIn 0.8s 0.6s forwards;
         }
-        
-        @keyframes glow {
-            from { text-shadow: 0 0 5px #b388ff; }
-            to { text-shadow: 0 0 15px #b388ff, 0 0 20px #7c4dff; }
-        }
-        
+
         .subtitle {
             color: #b0bec5;
-            margin-bottom: 25px;
-            font-size: 16px;
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: fadeIn 0.8s 0.8s forwards;
         }
-        
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
         .buttons {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin: 25px 0;
+            margin: 30px 0;
         }
-        
+
         .btn {
-            padding: 10px 20px;
+            padding: 12px 25px;
             border-radius: 50px;
             text-decoration: none;
             color: white;
             font-weight: 600;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
-            border: 2px solid transparent;
-            min-width: 120px;
+            border: none;
             text-align: center;
             cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        
+
+        .btn:nth-child(1) { animation: btnAppear 0.6s 1.0s forwards; }
+        .btn:nth-child(2) { animation: btnAppear 0.6s 1.2s forwards; }
+        .btn:nth-child(3) { animation: btnAppear 0.6s 1.4s forwards; }
+        .btn:nth-child(4) { animation: btnAppear 0.6s 1.6s forwards; }
+
+        @keyframes btnAppear {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .btn::before {
             content: '';
             position: absolute;
@@ -107,114 +163,202 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: 0.5s;
+            transition: 0.6s;
         }
-        
+
+        .btn:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        }
+
         .btn:hover::before {
             left: 100%;
         }
-        
-        .btn-github {
-            background: rgba(36, 41, 46, 0.7);
-            border-color: #6e5494;
-        }
-        
-        .btn-github:hover {
-            background: #6e5494;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(110, 84, 148, 0.4);
-        }
-        
+
         .btn-telegram {
-            background: rgba(0, 136, 204, 0.7);
-            border-color: #0088cc;
+            background: linear-gradient(135deg, #0088cc, #00a8e8);
         }
-        
-        .btn-telegram:hover {
-            background: #0088cc;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 136, 204, 0.4);
+
+        .btn-github {
+            background: linear-gradient(135deg, #333, #6e5494);
         }
-        
-        .btn-discord {
-            background: rgba(88, 101, 242, 0.7);
-            border-color: #5865f2;
+
+        .btn-projects {
+            background: linear-gradient(135deg, var(--neon-purple), #b388ff);
+            grid-column: span 2;
         }
-        
-        .btn-discord:hover {
-            background: #5865f2;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
-        }
-        
+
         .btn-music {
-            background: rgba(156, 39, 176, 0.7);
-            border-color: #9c27b0;
+            background: linear-gradient(135deg, #9c27b0, #e91e63);
         }
-        
-        .btn-music:hover {
-            background: #9c27b0;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(156, 39, 176, 0.4);
-        }
-        
+
         .btn-music.playing::after {
             content: " ♫";
             animation: musicNote 1s infinite;
         }
-        
+
         @keyframes musicNote {
             0%, 100% { opacity: 1; }
             50% { opacity: 0.3; }
         }
-        
-        .projects {
+
+        .projects-section {
             margin-top: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 0.8s 1.8s forwards;
         }
-        
-        .project-item {
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            color: var(--neon-green);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--neon-green);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-green), transparent);
+            animation: titleUnderline 3s infinite;
+        }
+
+        @keyframes titleUnderline {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
             background: rgba(30, 30, 40, 0.6);
             padding: 12px;
             border-radius: 8px;
-            margin: 10px 0;
-            transition: all 0.3s ease;
-            border-left: 3px solid #7c4dff;
+            transition: all 0.4s ease;
+            border-left: 3px solid var(--neon-pink);
+            transform: scale(0.95);
+            opacity: 0;
+            animation: skillAppear 0.5s forwards;
         }
-        
-        .project-item:hover {
-            transform: translateX(10px);
+
+        .skill-item:nth-child(1) { animation-delay: 2.0s; }
+        .skill-item:nth-child(2) { animation-delay: 2.1s; }
+        .skill-item:nth-child(3) { animation-delay: 2.2s; }
+        .skill-item:nth-child(4) { animation-delay: 2.3s; }
+        .skill-item:nth-child(5) { animation-delay: 2.4s; }
+
+        @keyframes skillAppear {
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .skill-item:hover {
+            transform: translateY(-5px) scale(1.05) !important;
             background: rgba(40, 40, 50, 0.8);
+            box-shadow: 0 5px 15px rgba(254, 83, 187, 0.3);
         }
-        
+
         footer {
-            margin-top: 30px;
-            font-size: 12px;
+            margin-top: 40px;
+            font-size: 0.9rem;
             color: #616161;
+            opacity: 0;
+            animation: fadeIn 0.8s 2.5s forwards;
+        }
+
+        .dragon-icon {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            opacity: 0.1;
+            z-index: -1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .dragon-icon:nth-child(1) {
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .dragon-icon:nth-child(2) {
+            bottom: 10%;
+            right: 10%;
+            animation-delay: 2s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        .neon-pulse {
+            animation: neonPulse 3s infinite alternate;
+        }
+
+        @keyframes neonPulse {
+            from { text-shadow: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-purple); }
+            to { text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-purple); }
         }
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
+    
+    <div class="dragon-icon">
+        <svg viewBox="0 0 24 24" fill="var(--neon-purple)">
+            <path d="M19,7L18,9V7H17V9H15V5H14V10H13V5H12V10H11V5H10V9H8V7H7V9L6,7H5V20H6L7,18V20H8V18H10V20H11V18H13V20H14V18H15V20H17V18L18,20H19V7M7,11H8V16H7V11M10,11H11V16H10V11M13,11H14V16H13V11M17,11H16V16H17V11Z"/>
+        </svg>
+    </div>
+    <div class="dragon-icon">
+        <svg viewBox="0 0 24 24" fill="var(--neon-blue)">
+            <path d="M19,7L18,9V7H17V9H15V5H14V10H13V5H12V10H11V5H10V9H8V7H7V9L6,7H5V20H6L7,18V20H8V18H10V20H11V18H13V20H14V18H15V20H17V18L18,20H19V7M7,11H8V16H7V11M10,11H11V16H10V11M13,11H14V16H13V11M17,11H16V16H17V11Z"/>
+        </svg>
+    </div>
+
     <div class="bio-container">
-        <img src="https://i.postimg.cc/tRhJCfjm/IMG-20250512-213917-596.jpg" class="avatar">
+        <div class="avatar-container">
+            <div class="avatar-border"></div>
+            <img src="https://i.postimg.cc/tRhJCfjm/IMG-20250512-213917-596.jpg" class="avatar">
+        </div>
         
-        <h1>✨ Dream ✨</h1>
-        <div class="subtitle">Original developer</div>
+        <h1 class="neon-pulse">DREAM</h1>
+        <div class="subtitle">Digital Creator & Developer</div>
         
         <div class="buttons">
-            <a href="https://t.me/vvvfgrgdbot" class="btn btn-github">Moder</a>
             <a href="https://t.me/dream23041" class="btn btn-telegram">Telegram</a>
-            <a href="https://t.me/airprogram" class="btn btn-discord">Manager</a>
+            <a href="https://github.com/dream23041" class="btn btn-github">GitHub</a>
+            <a href="#projects" class="btn btn-projects">Мои проекты</a>
             <button id="musicBtn" class="btn btn-music">Расслабон</button>
         </div>
         
-        <div class="projects">
-            <div class="project-item">HTML developer</div>
-            <div class="project-item">Python developer</div>
-            <div class="project-item">System administrator</div>
+        <div class="projects-section" id="projects">
+            <h3 class="section-title">НАВЫКИ</h3>
+            <div class="skills-grid">
+                <div class="skill-item">HTML/CSS</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">Системный админ</div>
+                <div class="skill-item">Дизайн</div>
+            </div>
         </div>
         
         <footer>
-            © 2025. All rights reserved. (by dream)
+            © 2025 Dream Digital Universe | Все права защищены
         </footer>
     </div>
 
@@ -224,45 +368,127 @@
         Ваш браузер не поддерживает аудио.
     </audio>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        const musicBtn = document.getElementById('musicBtn');
-        const bgMusic = document.getElementById('bgMusic');
-        let isPlaying = false;
+        // Инициализация частиц
+        document.addEventListener('DOMContentLoaded', function() {
+            particlesJS('particles-js', {
+                "particles": {
+                    "number": {
+                        "value": 80,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": ["#08f7fe", "#fe53bb", "#09fbd3", "#7c4dff"]
+                    },
+                    "shape": {
+                        "type": "circle",
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 1,
+                            "opacity_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,
+                            "speed": 2,
+                            "size_min": 0.1,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#08f7fe",
+                        "opacity": 0.2,
+                        "width": 1
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 1,
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "out",
+                        "bounce": false
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "grab"
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 140,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "push": {
+                            "particles_nb": 4
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
 
-        // Уменьшаем громкость
-        bgMusic.volume = 0.3;
+            const musicBtn = document.getElementById('musicBtn');
+            const bgMusic = document.getElementById('bgMusic');
+            let isPlaying = false;
 
-        musicBtn.addEventListener('click', function() {
-            if (isPlaying) {
-                bgMusic.pause();
-                musicBtn.classList.remove('playing');
-                musicBtn.textContent = 'Расслабон';
-            } else {
-                bgMusic.play()
-                    .then(() => {
-                        musicBtn.classList.add('playing');
-                        musicBtn.textContent = 'Стоп';
-                        isPlaying = true;
-                    })
-                    .catch(error => {
-                        console.error("Автовоспроизведение заблокировано:", error);
-                        alert("Нажмите 'Разрешить' во всплывающем окне браузера, чтобы включить музыку");
-                    });
-            }
-            isPlaying = !isPlaying;
-        });
+            bgMusic.volume = 0.3;
 
-        // Автоматически предлагаем включить музыку при загрузке
-        window.addEventListener('load', () => {
-            bgMusic.play()
-                .then(() => {
+            musicBtn.addEventListener('click', function() {
+                if (isPlaying) {
                     bgMusic.pause();
-                    isPlaying = false;
-                })
-                .catch(error => {
-                    console.log("Браузер требует взаимодействия пользователя");
-                });
+                    musicBtn.classList.remove('playing');
+                    musicBtn.textContent = 'Расслабон';
+                } else {
+                    bgMusic.play()
+                        .then(() => {
+                            musicBtn.classList.add('playing');
+                            musicBtn.textContent = 'Стоп';
+                            isPlaying = true;
+                        })
+                        .catch(error => {
+                            console.error("Автовоспроизведение заблокировано:", error);
+                            musicBtn.textContent = 'Нажмите снова';
+                        });
+                }
+                isPlaying = !isPlaying;
+            });
+
+            // Плавное появление при загрузке
+            document.body.style.opacity = 0;
+            setTimeout(() => {
+                document.body.style.transition = 'opacity 1s ease';
+                document.body.style.opacity = 1;
+            }, 100);
         });
     </script>
 </body>
-          </html>
+</html>
