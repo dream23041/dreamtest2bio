@@ -129,7 +129,10 @@
             background-position: center;
             position: relative;
             overflow: hidden;
-            background-color: var(--dark-bg) /* Fallback цвет */
+            background-color: var(--dark-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .project-image::after {
@@ -140,6 +143,12 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.8))
+        }
+
+        .project-icon {
+            font-size: 4rem;
+            color: rgba(255,255,255,0.2);
+            z-index: 1;
         }
 
         .project-content {
@@ -305,8 +314,8 @@
         <div class="projects-grid">
             
             <div class="project-card">
-                <div class="project-image" style="background-image: url('https://i.ibb.co/7YkqZzG/dragon-bot.jpg');">
-                    
+                <div class="project-image" style="background: linear-gradient(135deg, #7c4dff, #3a1c71);">
+                    <div class="project-icon">🐉</div>
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">Dragon Demonic</h3>
@@ -321,8 +330,8 @@
 
             
             <div class="project-card">
-                <div class="project-image" style="background-image: url('https://i.ibb.co/0jQ6J0N/moderator-bot.jpg');">
-                    
+                <div class="project-image" style="background: linear-gradient(135deg, #08f7fe, #00c6fb);">
+                    <div class="project-icon">🤖</div>
                 </div>
                 <div class="project-content">
                     <h3 class="project-title">DRModer Bot</h3>
