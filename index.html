@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>✨ Dream | Digital Creator</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --neon-blue: #08f7fe;
@@ -63,7 +63,7 @@
             position: relative;
             width: 150px;
             height: 150px;
-            margin: 0 auto 15px; /* Уменьшил отступ снизу */
+            margin: 0 auto 15px;
         }
 
         .avatar {
@@ -99,17 +99,24 @@
             to { transform: rotate(360deg); }
         }
 
+        .title-container {
+            position: relative;
+            display: inline-block;
+            margin: 0 auto;
+        }
+
         h1 {
-            margin: 5px 0; /* Уменьшил отступы */
-            font-size: 2.8rem; /* Увеличил размер */
+            margin: 5px 0;
+            font-size: 2.8rem;
             font-family: 'Orbitron', sans-serif;
             color: var(--neon-blue);
-            text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue); /* Усилил свечение */
+            text-shadow: 0 0 15px var(--neon-blue), 0 0 30px var(--neon-blue);
             letter-spacing: 2px;
             opacity: 0;
             animation: fadeIn 0.8s 0.6s forwards, neonGlowTitle 2s infinite alternate;
             position: relative;
             display: inline-block;
+            padding-right: 25px;
         }
 
         @keyframes neonGlowTitle {
@@ -123,16 +130,31 @@
             }
         }
 
+        .gear-icon {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            right: 0;
+            top: -10px;
+            animation: rotateGear 5s linear infinite;
+            opacity: 0.9;
+            z-index: 10;
+            filter: drop-shadow(0 0 8px var(--neon-blue));
+        }
+
+        @keyframes rotateGear {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         .dream-title {
             font-family: 'Orbitron', sans-serif;
             color: var(--neon-green);
             font-size: 2rem;
-            margin: 5px 0 15px; /* Уменьшил отступы */
+            margin: 5px 0 15px;
             text-shadow: 0 0 15px var(--neon-green);
             position: relative;
             display: inline-block;
-            animation: neonGlow 2s infinite alternate;
-            opacity: 0;
             animation: fadeIn 0.8s 0.7s forwards, neonGlow 2s infinite alternate;
         }
 
@@ -151,7 +173,7 @@
 
         .subtitle {
             color: #b0bec5;
-            margin-bottom: 25px; /* Уменьшил отступ */
+            margin-bottom: 25px;
             font-size: 1.1rem;
             opacity: 0;
             animation: fadeIn 0.8s 0.8s forwards;
@@ -165,7 +187,7 @@
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 15px;
-            margin: 25px 0; /* Уменьшил отступы */
+            margin: 25px 0;
         }
 
         .btn {
@@ -227,7 +249,7 @@
         }
 
         .projects-section {
-            margin-top: 25px; /* Уменьшил отступ */
+            margin-top: 25px;
             opacity: 0;
             transform: translateY(20px);
             animation: fadeInUp 0.8s 1.8s forwards;
@@ -296,7 +318,7 @@
         }
 
         footer {
-            margin-top: 30px; /* Уменьшил отступ */
+            margin-top: 30px;
             font-size: 0.9rem;
             color: #616161;
             opacity: 0;
@@ -328,27 +350,6 @@
             0%, 100% { transform: translateY(0) rotate(0deg); }
             50% { transform: translateY(-20px) rotate(5deg); }
         }
-
-        .gear-icon {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            right: -10px;
-            top: 5px;
-            animation: rotateGear 5s linear infinite;
-            opacity: 0.8;
-            z-index: 1;
-        }
-
-        @keyframes rotateGear {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .title-container {
-            position: relative;
-            display: inline-block;
-        }
     </style>
 </head>
 <body>
@@ -368,7 +369,7 @@
     <div class="bio-container">
         <div class="avatar-container">
             <div class="avatar-border"></div>
-            <img src="https://i.imgur.com/JR7kFUV.jpg" class="avatar" alt="Dream Avatar"> <!-- Заменил аватарку -->
+            <img src="https://i.imgur.com/JR7kFUV.jpg" class="avatar" alt="Dream Avatar">
         </div>
         
         <div class="title-container">
