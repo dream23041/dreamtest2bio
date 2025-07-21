@@ -287,6 +287,12 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(254, 83, 187, 0.5)
         }
+
+        .subtitle span {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
     </style>
 </head>
 <body>
@@ -308,7 +314,11 @@
     <div class="container">
         <div class="header">
             <h1>Мои проекты</h1>
-            <div class="subtitle">Здесь собраны мои лучшие работы, в которые я вложил душу и профессиональные навыки</div>
+            <div class="subtitle">
+                <span>📌 Реализованные проекты</span> • 
+                <span>🛠️ Наши возможности</span> • 
+                <span>👥 Командная работа</span>
+            </div>
         </div>
 
         <div class="projects-grid">
@@ -361,7 +371,7 @@
             </div>
 
             <div class="project-card">
-                <div class="project-image" style="background: linear-gradient(135deg, #ff5e62, #ff9966);">
+                <div class="project-image" style="background: linear-gradient(135deg, #FFD700, #DAA520);">
                     <div class="project-icon">🎨</div>
                 </div>
                 <div class="project-content">
